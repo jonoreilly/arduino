@@ -60,11 +60,12 @@ public:
 
 class rock{
 public:
-  int posy = random(4), posx = 0;
+  int posy = random(4), posx = 0, spd = 8, cont = 0;
 
   void clear(){
    posx = 0;
    posy = random (4); 
+   spd = 8;
   }
   void move(){
     posx++;
@@ -72,6 +73,11 @@ public:
 //    delete this;
       posx = 0;
       posy = random(4);
+      if ((cont > 12 - spd) && (spd > 0)){
+        spd--;
+        cont = 0;
+      }
+      else {cont++;}
   }}
   void draw(dsplay& matrix){
     matrix.drawbit(posx, posy);

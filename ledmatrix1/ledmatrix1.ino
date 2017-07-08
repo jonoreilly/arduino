@@ -1,8 +1,9 @@
 #include "functions.h"
 
 //leftbutton in pin 0 and right i 1
-int RPF = 10;
+int RPF = 5;
 int frames = 0;
+int score = 0;
 
 dsplay matrix;
 car player;
@@ -15,6 +16,7 @@ void refresh(){
   delay(2);
 }}
 frames++;
+score++;
 }
 
 void draw(){
@@ -24,11 +26,12 @@ void draw(){
 
 void move(){
   player.move();
-  if (frames >= 4){
+  if (frames >= enemy.spd){
   enemy.move();
   frames = 0;
-  Serial.print(enemy.posx);
-  Serial.print(enemy.posy);
+  Serial.print(enemy.spd);
+  Serial.print("        ");
+  Serial.print(score);
   Serial.print("\n");
   }
 }
@@ -65,7 +68,7 @@ void loop() {
     if (enemy.posx > 5 && (enemy.posy == player.carpy)){break;}
   }
 
-  Serial.print("Game over");
+  Serial.print("Game over\n");
   delay (10000);
   enemy.clear();
 /*
