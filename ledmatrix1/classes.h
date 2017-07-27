@@ -7,7 +7,7 @@ public:
   void setup(){
     for (int i = 0; i < tall; i++){
       pinMode(piny[i], OUTPUT);
-      digitalWrite(piny[i], LOW);
+      digitalWrite(piny[i], HIGH);
     }
     for (int i = 0; i < wide; i++){
       pinMode(pinx[i], OUTPUT);
@@ -64,7 +64,7 @@ public:
 
   void clear(){
    posx = 0;
-   posy = random (4); 
+   posy = random (4);
    spd = 8;
   }
   void move(){
@@ -73,7 +73,7 @@ public:
 //    delete this;
       posx = 0;
       posy = random(4);
-      if ((cont > 12 - spd) && (spd > 0)){
+      if ((cont > 9 - spd) && (spd > 0)){
         spd--;
         cont = 0;
       }
