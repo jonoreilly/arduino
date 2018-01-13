@@ -1,0 +1,30 @@
+pinout =
+	Vss = Gnd
+	Vdd = 5V
+	V0  = Contrast (potenciometro 5V-Gnd)
+	RS  = Register Select (1:DataIn, 0:InstructionIn)
+	RW  = Read Write (1:Read, 0:Write) 
+	E   = Enable Signal (pulse High for data transfer into DDRAM)
+	
+	DB0-7 = 8 bit data bus
+	DB4-7 = 4 bit data bus
+
+	A = Backlight +5V 
+	K = Backlight Gnd 
+
+
+
+
+RS -> 0/1
+
+data bus -> write data
+
+E -> pulse data to DDRAM
+
+if (databus size == 4){
+	data bus -> write data
+	E -> pulse data to DDRAM
+	}
+
+
+
