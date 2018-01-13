@@ -1,17 +1,17 @@
 
-int freq = 840;
+int freq = 440;
 int intToBinary = 0;
-long counter = 0;
-long microSeconds = 0;
+//long counter = 0;
+//long microSeconds = 0;
 long periodoMicro = 1000000/freq;
-long last = 0;
+//long last = 0;
 float sinvalue = 0.0;
-float angle = 0;
-float offset = 0;
+//float angle = 0;
+//float offset = 0;
 byte count = 0;
-byte pins[] = {4, 2, 3, 5, 6};
+byte pins[] = {6, 5, 4, 3, 2};
 byte const pinQuantity = 5;
-bool add = true;
+//bool add = true;
 bool bus[] =  {0, 0, 0, 0, 0};
 
 void setup() 
@@ -20,6 +20,7 @@ void setup()
   {
     pinMode(pins[i], OUTPUT);
   }
+  pinMode(LED_BUILTIN, OUTPUT);
   
 // Serial.begin(9600);
 }
@@ -28,7 +29,13 @@ void setup()
 
 void loop() 
 {
-//  Serial.println(periodoMicro);
+  /*
+  if(micros()%10000 > 5000)
+  {digitalWrite(LED_BUILTIN, HIGH);}
+  else
+  {digitalWrite(LED_BUILTIN, LOW);}
+  */
+ // Serial.println(micros());
   /*
   counter ++;
   if (add)
@@ -71,23 +78,27 @@ void loop()
 
   intToBinary = (int)((sinvalue + 1) * 16);
 
+// Serial.println(intToBinary);
+
+
   count = 0;
   while (intToBinary > 0)
-  {
-    bus[count] = intToBinary % 2;
-    intToBinary = intToBinary / 2;
-    count++;  
-  }
+      {
+        bus[count] = intToBinary % 2;
+        intToBinary = intToBinary / 2;
+        count++;  
+      }
+ //     Serial.println("cucu");
+    
+      for (int i = 0; i < count; i++)
+      {
+          digitalWrite(pins[i], bus[i]);
+      }
 
-  for (int i = 0; i < pinQuantity-count; i++)
-  {
-    digitalWrite(pins[i], LOW); 
-  }
-
-  for (int i = 0; i < count; i++)
-  {
-      digitalWrite(pins[pinQuantity-count+i], bus[i]);
-  }
+      for (int i = count; i < pinQuantity; i++)
+      {
+        digitalWrite(pins[i], LOW); 
+      }
 
 
   /*
