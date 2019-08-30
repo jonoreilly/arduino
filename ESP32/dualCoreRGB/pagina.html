@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html>
+
+    <head>
+
+        <title>RGB</title>
+        <meta charset="UTF-8"> 
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+
+        <style>
+            body {
+                margin: 0;
+                white-space: nowrap;
+            }
+            .boton {
+                width: 40vw;
+                height: 60vh;
+                margin: 5vh 5vw;
+                font-size: 20vw;
+            }
+            .slider {
+                width: 90vw;
+                height: 2vh;
+                margin: 2vh 5vw;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <p>
+            Red:
+            <input type="range" min="0" max="255" value="100" class="slider" onchange="desplazar('R', this.value)">
+        </p>
+        <p>
+            Green:
+            <input type="range" min="0" max="255" value="100" class="slider" onchange="desplazar('G', this.value)">
+        </p>
+        <p>
+            Blue:
+            <input type="range" min="0" max="255" value="100" class="slider" onchange="desplazar('B', this.value)">
+        </p>
+
+
+        <a href='/ON'>
+            <button class='boton'>ON</button>
+        </a>
+
+        <a href='/OFF'>
+            <button class='boton'>OFF</button>
+        </a>
+
+
+
+        <script>
+            function desplazar(color, value) {
+                /*debugger;*/
+                /*$.get(window.location.href + "/" + color + "/" + value);*/
+                $.get("/RGB/" + color + "/" + value);
+            }
+        </script>
+
+    </body>
+
+</html> 
